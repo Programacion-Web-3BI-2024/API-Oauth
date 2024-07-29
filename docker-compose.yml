@@ -1,0 +1,25 @@
+version : "3.5"
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql 
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root 
+      - MYSQL_DATABASE=laravel
+    volumes:
+      - "./mysql:/var/lib/mysql"
+  api:
+    depends_on:  
+      - mysql
+    image: ggmartinez/laravel:php-82
+    container_name: api 
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./:/app"
+
+
+
+
